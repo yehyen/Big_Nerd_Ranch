@@ -4,30 +4,34 @@ fun main(args: Array<String>) {
     var healthPoints = 89
     // 看看走不走運
     val isBlessed = true
-    // 頭上是否有光環：走運且健康值>50
+    // 頭上是否有光環
     val isImmortal = false
 
+    // 光環出現條件：走運且健康值>50
     // 邏輯運算子優先順序：[!], [<,<=,>,>=], [==,!=], [&&], [||]
-    if(isBlessed && healthPoints > 50 || isImmortal){
+    val auraVisible = isBlessed && healthPoints > 50 || isImmortal
+    if(auraVisible){
         println("GREEN")
     }else{
         println("NONE")
     }
 
-    if(healthPoints == 100){
-        println(name + " is in excellent condition!")
+    //  判斷玩家狀況
+    val healthStatus = if(healthPoints == 100){
+        " is in excellent condition!"
     }else if(healthPoints >= 90){
-        println(name + " has a few scratches.")
+        " has a few scratches."
     }else if(healthPoints >= 75){
         // 巢狀if...else
         if(isBlessed){
-            println(name + " has some minor wounds but is healing quite quickly!")
+            " has some minor wounds but is healing quite quickly!"
         }else{
-            println(name + " has some minor wounds.")
+            " has some minor wounds."
         }
     }else if(healthPoints >= 15){
-        println(name + " looks pretty hurt.")
+        " looks pretty hurt."
     }else{
-        println(name + " is in awful condition!")
+        " is in awful condition!"
     }
+    println(name + " " + healthStatus)
 }
