@@ -17,14 +17,13 @@ fun main(args: Array<String>) {
     printPlayerStatus(auraColor, isBlessed, name, healthStatus)
 
     // 施展Fireball魔法功能
-    castFireball(5)
+    castFireball()
 }
 
 // 使用Refactor→function..重構
 private fun printPlayerStatus(auraColor: String, isBlessed: Boolean, name: String, healthStatus: String) {
     println("(Aura: $auraColor) " +
-            "(Blessed: ${if (isBlessed) "YES" else "NO"})"
-            )
+            "(Blessed: ${if (isBlessed) "YES" else "NO"})")
     println("$name $healthStatus")
 }
 
@@ -35,9 +34,9 @@ private fun auraColor(isBlessed: Boolean, healthPoints: Int, isImmortal: Boolean
     return auraColor
 }
 
-// 使用Refactor→function..重構
-private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean): String {
-    val healthStatus = when (healthPoints) {
+// 單運算式函數：若函數內只有一個運算式求值，或只有一行求值語句，返回、大括弧都可以省略，直接以「=」代替
+private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean) =
+    when (healthPoints) {
         100 -> "is in excellent condition!"
         in 90..99 -> "has a few scratches."
         in 75..89 -> if (isBlessed) {
@@ -48,10 +47,9 @@ private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean): String {
         in 15..74 -> "looks pretty hurt."
         else -> "is in awful condition!"
     }
-    return healthStatus
-}
 
-// 自訂函數Fireball功能，輸出施展魔法的結果，增加參數讓玩家一次多變出幾杯來
-private fun castFireball(numFireballs: Int){
+
+// 自訂函數Fireball功能，輸出施展魔法的結果，增加參數讓玩家一次多變出幾杯來，不代引數傳入，參數預設即為2
+private fun castFireball(numFireballs: Int = 2){
     println("A glass of Fireball springs into existence. (x$numFireballs)")
 }
