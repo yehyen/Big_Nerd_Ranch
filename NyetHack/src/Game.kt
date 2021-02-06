@@ -16,8 +16,8 @@ fun main(args: Array<String>) {
     // 顯示玩家狀況
     printPlayerStatus(auraColor, isBlessed, name, healthStatus)
 
-    // 施展Fireball魔法
-    castFireball()
+    // 施展Fireball魔法功能
+    castFireball(5)
 }
 
 // 使用Refactor→function..重構
@@ -51,7 +51,7 @@ private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean): String {
     return healthStatus
 }
 
-// 自訂函數Fireball魔法，輸出施展魔法的結果
-private fun castFireball(){
-    println("A glass of Fireball springs into existence.")
+// 自訂函數Fireball功能，輸出施展魔法的結果，增加參數讓玩家一次多變出幾杯來
+private fun castFireball(numFireballs: Int){
+    println("A glass of Fireball springs into existence. (x$numFireballs)")
 }
