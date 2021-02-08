@@ -7,9 +7,10 @@ fun main(args: Array<String>) {
     // 如上() -> String，()的參數，返回資料類型為String
     // 不用註明return，匿名函數會自動回傳函數中最後一行
     // ()內放匿名函數的參數類型，playerName為()的參數名稱
-    val greetingFunction: (String) -> String = { playerName ->
+    // 只有一個參數的匿名函數，可使用it代替參數名稱或具名引數
+    val greetingFunction: (String) -> String = {
         val currentYear = 2018
-        "Welcom to SimVillage, $playerName! (copyright $currentYear)"
+        "Welcom to SimVillage, $it! (copyright $currentYear)"
     }
     println(greetingFunction("Guyal"))
 }
