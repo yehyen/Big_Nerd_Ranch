@@ -9,17 +9,23 @@ fun main(args: Array<String>) {
     // ()內放匿名函數的參數類型，playerName為()的參數名稱
     // 只有一個參數的匿名函數，可使用it代替參數名稱或具名引數
     // 類型推斷特性可簡略定義類型，讓greetingFunction函數自行去推斷，但參數必須要有名稱和類型定義，否則程式混洧
-    val greetingFunction = { playerName: String, numBuildings: Int ->
+    // 直接呼叫使用函數簡略語法：當函數的lambda運算式參數是唯一的或是排在最後的，便可省略引數小括號
+    runSimulation("Guyal"){ playerName, numBuildings ->
         val currentYear = 2018
         println("Adding $numBuildings houses")
         "Welcom to SimVillage, $playerName! (copyright $currentYear)"
     }
-
-    // 隨機確定已建造多少棟房子後，輸出歡迎語句
-    runSimulation("Guyal", greetingFunction)
 }
 
-fun runSimulation(playerName: String, greetingFunction: (String, Int) -> String) {
-    val numBuildings = (1..3).shuffled().last()
+// lambda是以物件形式存在，會把lambda有相關的變數分配給記憶體影響效能
+// 使用inline關鍵字，呼叫函數時就不會使用lambda物件
+inline fun runSimulation(playerName: String, greetingFunction: (String, Int) -> String) {
+    val numBuildings = (1..3).shuffled().last()     // 房屋數
     println(greetingFunction(playerName, numBuildings))
+}
+
+// 房屋建造成本，runSimulation的函數參照
+fun printConstructionCost(numBuildings: Int){
+    val cost = 500
+    println("construction cost: ${cost * numBuildings}")
 }
